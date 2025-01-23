@@ -1,0 +1,57 @@
+php_value display_errors Off
+php_value mbstring.http_input auto
+php_value date.timezone Europe/Brussels
+
+##################################################
+# إعدادات ملف .htaccess لموقع Azorpub
+##################################################
+
+# إجبار استخدام HTTPS و www
+RewriteEngine On
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^barber-azzimani\.be [NC]
+RewriteRule ^(.*)$ https://www.barber-azzimani.be/$1 [L,R=301]
+
+# تعيين الصفحة الافتراضية
+DirectoryIndex index.php index.html index.htm
+
+# منع التخزين المؤقت أثناء التطوير
+<IfModule mod_headers.c>
+    Header unset ETag
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+</IfModule>
+
+# حماية الملفات الحساسة
+<FilesMatch "(\.htaccess|\.htpasswd|\.env|config\.php|ini|log|sh|bak)$">
+    Require all denied
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ضغط الملفات لتحسين الأداء
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json font/woff2 font/woff font/ttf
+</IfModule>
+
+# تخصيص صفحات الأخطاء
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# التخزين المؤقت للملفات الثابتة لتحسين الأداء
+; <IfModule mod_expires.c>
+;     ExpiresActive On
+;     ExpiresDefault "access plus 1 day"
+;     ExpiresByType text/html "access plus 0 seconds"
+;     ExpiresByType text/css "access plus 1 week"
+;     ExpiresByType application/javascript "access plus 1 week"
+;     ExpiresByType image/jpeg "access plus 1 month"
+;     ExpiresByType image/png "access plus 1 month"
+;     ExpiresByType image/svg+xml "access plus 1 month"
+; </IfModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} GET
+    RewriteRule .* - [L]
+</IfModule>

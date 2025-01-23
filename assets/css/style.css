@@ -1,0 +1,282 @@
+/* ملف assets/css/style.css */
+
+
+/* التنسيق العام */
+
+
+/* تنسيقات أساسية للصفحة */
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 40%;
+    width: 100%;
+}
+
+
+/* الحاوية الرئيسية للنموذج */
+
+form {
+    max-width: 100%;
+    width: 100%;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* عنوان الصفحة */
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+
+/* تنسيق التصنيفات */
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* تنسيق الحقول */
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+/* تنسيق الزر */
+
+button {
+    width: 100%;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#send-confirmation-code:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.confirm {
+    display: flex;
+    justify-content: space-between;
+    /* توزيع العناصر */
+    align-items: center;
+    /* محاذاة العناصر عموديًا */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.confirm input {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.confirm button {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-row {
+    display: flex;
+    /* يجعل العناصر تظهر في صف واحد */
+    gap: 16px;
+    /* المسافة بين العناصر */
+    align-items: flex-end;
+    /* محاذاة العناصر من الأسفل */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    /* يجعل الـ Label فوق حقل الإدخال */
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    /* مسافة بين الـ Label وحقل الإدخال */
+    font-weight: bold;
+    /* يجعل نص الـ Label غامقًا */
+}
+
+.form-group input,
+select {
+    padding: 8px;
+    /* إضافة مساحة داخلية لحقول الإدخال */
+    border: 1px solid #ccc;
+    /* إطار بسيط */
+    border-radius: 4px;
+    /* زوايا مدورة */
+}
+
+
+/* رسائل الحالة */
+
+#email-status,
+#message-container {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #28a745;
+}
+
+
+/* تنسيق خاص لمربع النص */
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+
+/* تحسين توافق الأجهزة الصغيرة */
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        width: 100%
+    }
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+
+/* تنسيقات الرسائل */
+
+#message-container {
+    margin-bottom: 20px;
+}
+
+
+/* تنسيقات الرسائل */
+
+#message-container {
+    margin-bottom: 20px;
+}
+
+.message.loading {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+
+/* تنسيقات الرسائل */
+
+#email-status {
+    margin-top: 5px;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* تنسيق عنصر التحميل */
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.2);
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    z-index: 1000;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

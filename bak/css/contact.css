@@ -1,0 +1,276 @@
+/* ==========================
+   GENERAL BODY STYLES
+============================= */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    overflow-x: hidden;
+    /* منع التمرير الأفقي */
+}
+
+
+/* ==========================
+   HEADER
+============================= */
+
+
+/* header {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    padding: 20px 20px 40px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+} */
+
+
+/* dddd */
+
+header {
+    padding: 20px;
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+header img.logo {
+    max-width: 150px;
+    height: auto;
+}
+
+
+/* ddd */
+
+
+/* .logo {
+    max-width: 120px;
+    height: auto;
+} */
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+    color: #f1f1f1;
+}
+
+.language-selector {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.language-selector select {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ==========================
+   CONTACT SECTION
+============================= */
+
+.contact-section {
+    max-width: 800px;
+    /* العرض الأقصى على الشاشات الكبيرة */
+    margin: 50px auto;
+    /* التوسيط العام */
+    text-align: center;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+.contact100-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input100 {
+    width: 90%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input100:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+textarea.input100 {
+    height: 150px;
+    resize: none;
+}
+
+.contact-btn {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #008cff);
+}
+
+.contact-info {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================
+   FOOTER
+============================= */
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
+
+/* الوضع الداكن */
+
+body.dark-mode footer {
+    background-color: #333;
+    color: white;
+}
+
+
+/* الوضع الفاتح */
+
+body.light-mode footer {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: black;
+}
+
+
+/* ==========================
+   DARK MODE
+============================= */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: white;
+    }
+    header {
+        background: linear-gradient(135deg, #222, #444);
+        color: white;
+    }
+    .contact-section {
+        background-color: #333;
+        color: white;
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    .input100 {
+        background-color: #444;
+        color: white;
+        border: 1px solid #555;
+    }
+    .contact-btn {
+        background: linear-gradient(135deg, #555, #777);
+        color: white;
+    }
+    .contact-info a {
+        color: #00d4ff;
+    }
+    footer {
+        background-color: #222;
+        color: white;
+    }
+}
+
+
+/* ==========================
+   RESPONSIVE DESIGN
+============================= */
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 15px;
+        max-width: 90%;
+        /* العرض بالنسبة للشاشات المتوسطة */
+    }
+    .input100 {
+        font-size: 14px;
+    }
+    .contact-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 10px;
+        max-width: 95%;
+        /* العرض بالنسبة للشاشات الصغيرة */
+    }
+    .contact-section h2 {
+        font-size: 1.5rem;
+    }
+    .contact-info {
+        font-size: 14px;
+    }
+}

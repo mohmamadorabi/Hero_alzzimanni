@@ -1,0 +1,60 @@
+/* General Reset */
+
+
+/* استيراد خط Oswald */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+body.arabic {
+    font-family: 'Tajawal', 'Arial', sans-serif;
+    /* direction: rtl; */
+    /* text-align: right; */
+}
+
+body.dutch {
+    font-family: 'Oswald', sans-serif;
+    /* direction: rtl;
+    text-align: right; */
+}
+
+body.english {
+    font-family: 'Oswald', sans-serif;
+    /* direction: rtl; */
+    /* text-align: right; */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    /* text-align: center; */
+    background: url('./images/back.webp') center/cover no-repeat;
+    background-attachment: fixed;
+    /* تأثير التمرير البطيء */
+    overflow-x: hidden;
+    /* منع التمرير الأفقي */
+}
+
+footer {
+    /* background: #000; */
+    color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    /* تأثير التمويه */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    align-content: center;
+    /* توسيط العناصر */
+}
+
+footer p {
+    width: 100%;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 12px;
+    text-align: center;
+}

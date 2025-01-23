@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Azorpub</title>
+    <link rel="stylesheet" href="css/contact.css">
+
+    <script src="js/contact.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "3u1JAzZc9rzGKgHlh",
+            });
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPF92DQN2S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-GPF92DQN2S');
+    </script>
+
+    <style>
+        .appointment-section {
+            margin-top: 2rem;
+            padding: 1rem;
+            text-align: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .appointment-buttons {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn-appointment {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-appointment:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content"><img src="images/icons/logo 1143X636.png" alt="Azorpub Logo" class="logo">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-lang="nav-home">Home</a></li>
+                    <li><a href="gallery.html" data-lang="nav-gallery">Gallery</a></li>
+                    <li><a href="contact.html" data-lang="nav-contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector"><select id="lang-selector"><option value="en">EN</option><option value="nl">NL</option><option value="ar">AR</option></select></div>
+        </div>
+    </header>
+    <section class="contact-section">
+        <h2 data-lang="appointment-title">Appointment Services</h2>
+        <div class="appointment-buttons">
+            <button class="btn-appointment" id="book-appointment" onclick="window.location.href='appointment.html';">
+                Book Appointment
+            </button>
+            <!-- <button class="btn-appointment" id="check-appointment">I Have an Appointment</button> -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2 data-lang="contact-title">Or Contact Us</h2>
+        <form class="contact100-form validate-form">
+            <div class="wrap-input100"><input class="input100" type="text" id="name" name="name" placeholder="Your Name" required></div>
+            <div class="wrap-input100"><input class="input100" type="email" id="email" name="email" placeholder="Your Email" required></div>
+            <div class="wrap-input100"><input class="input100" type="text" id="subject" name="subject" placeholder="Subject" required></div>
+            <div class="wrap-input100"><textarea class="input100" id="message" name="message" placeholder="Your Message" required></textarea></div><button type="submit" class="contact-btn" data-lang="contact-submit">Send Email</button></form>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:info@azorpub.be">info@azorpub.be</a></p>
+            <p>WhatsApp: <a href="https://wa.me/+32465720410">+32 465 72 04 10</a></p>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p data-lang="footer-rights">© 2024 Azorpub. All rights reserved.</p>
+        <p data-lang="footer-developed">Developed by Azorpub Team.</p>
+    </footer>
+</body>
+
+</html>

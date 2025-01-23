@@ -1,0 +1,298 @@
+/* ==========================
+   GENERAL BODY STYLES
+============================= */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-image: url('/images/illuminated-logo-design-antwerp.png');
+    /* background-image: url('file:///C:/Users/OrabiSy/Desktop/web3/images/illuminated-logo-design-antwerp.png'); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/* الوضع الفاتح */
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+
+/* الوضع الداكن */
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+
+/* ==========================
+   HEADER STYLES
+============================= */
+
+.custom-header {
+    background: linear-gradient(135deg, #007bff, #8633b3);
+    color: white;
+    padding: 40px 20px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+
+/* الوضع الداكن للهيدر */
+
+body.dark-mode .custom-header {
+    background: linear-gradient(135deg, #222, #444);
+    /* تدرج جميل للوضع الداكن */
+    color: white;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.logo {
+    max-width: 250px;
+    height: auto;
+    animation: bounce 2s infinite;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #f1f1f1;
+}
+
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.language-selector select {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #5c38de;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+body.dark-mode .language-selector select {
+    background-color: #777;
+    color: white;
+}
+
+
+/* ==========================
+   MAIN SECTION
+============================= */
+
+.description-section {
+    /* position: relative; */
+    height: 300px;
+    padding: 50px 20px;
+    text-align: center;
+    /* background-image: url('/images/Product4.png'); */
+    /* background-image: url('file:///C:/Users/OrabiSy/Desktop/web3/images/Product4.png'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-attachment: fixed; */
+    color: white;
+    /* transition: background-color 0.3s ease, color 0.3s ease; */
+}
+
+.description-section1 {
+    position: relative;
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #444;
+    /* background-image: url('/images/Product4.png'); */
+    /* background-image: url('file:///C:/Users/OrabiSy/Desktop/web3/images/Product4.png'); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    background: linear-gradient(135deg, #007bff, #8633b3);
+    color: white;
+    padding: 40px 20px;
+    position: relative;
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    margin-bottom: 150px;
+    /* transition: background-color 0.3s ease, color 0.3s ease; */
+}
+
+
+/* الوضع الداكن */
+
+body.dark-mode .description-section {
+    /* background-color: #444; */
+    color: #f1f1f1;
+}
+
+
+/* الوضع الفاتح */
+
+body.light-mode .description-section {
+    /* background-color: white; */
+    color: #f1f1f1;
+}
+
+body.dark-mode .description-section1 {
+    background: linear-gradient(135deg, #555, #777);
+    color: #f1f1f1;
+}
+
+body.light-mode .description-section1 {
+    background-color: white;
+    color: #f1f1f1;
+}
+
+.description-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.description-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: left;
+}
+
+.features li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.features li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #007bff;
+    font-weight: bold;
+}
+
+
+/* ==========================
+   FOOTER STYLES
+============================= */
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    background: linear-gradient(135deg, #007bff, #8633b3);
+    color: white;
+    padding: 40px 20px;
+    position: relative;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+
+/* الوضع الداكن */
+
+body.dark-mode footer {
+    /* background-color: #333; */
+    background: linear-gradient(135deg, #555, #777);
+    color: white;
+}
+
+
+/* الوضع الفاتح */
+
+body.light-mode footer {
+    background: linear-gradient(135deg, #007bff, #8633b3);
+    color: black;
+}
+
+
+/* ==========================
+   RESPONSIVE DESIGN
+============================= */
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .nav-menu ul {
+        flex-direction: row;
+        gap: 15px;
+    }
+    .language-selector {
+        margin-top: 10px;
+    }
+    .description-section {
+        padding: 30px 15px;
+    }
+    .description-section h2 {
+        font-size: 2rem;
+    }
+    .description-section p {
+        font-size: 1rem;
+    }
+}
+
+
+/* ==========================
+   LOGO ANIMATION
+============================= */
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}

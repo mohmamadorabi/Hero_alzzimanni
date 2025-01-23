@@ -1,0 +1,176 @@
+/* زر التبديل اليدوي */
+
+
+/* theme-toggle */
+
+.theme-toggle {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 15px;
+    /* المسافة بين الزر والعناصر الأخرى */
+    /* position: absolute; */
+    margin: 0;
+    /* أزل أي هوامش إضافية */
+}
+
+.theme-toggle:hover {
+    background-color: var(--hover-color);
+}
+
+.theme-toggle i {
+    margin-bottom: 0;
+}
+
+
+/* الشريط العلوي */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    /* اضبط الارتفاع حسب الحاجة */
+    padding: 0px 90px;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--highlight-color);
+}
+
+.navbar .logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .menu {
+    display: flex;
+    gap: 15px;
+    background-color: var(--bg-color);
+    /* position: absolute; */
+    right: 0;
+    /* width: 100%; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* ظل خفيف للقائمة */
+    z-index: 1000;
+    /* لضمان ظهور القائمة فوق العناصر الأخرى */
+    padding: 10px 0;
+}
+
+.menu li {
+    list-style: none;
+    /* إزالة النقاط من القائمة */
+    padding: 10px 15px;
+    /* مسافات داخلية لعناصر القائمة */
+    white-space: nowrap;
+    /* منع النصوص من الانكسار على سطر جديد */
+    text-align: left;
+    /* محاذاة النص لليسار */
+}
+
+.navbar .menu a {
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navbar .menu a.active {
+    background-color: var(--highlight-color);
+    color: #fff;
+}
+
+
+/* زر القائمة للموبايل */
+
+.navbar .menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: auto;
+    margin: 0 10px;
+}
+
+
+/* القائمة المخفية */
+
+.menu.active {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--bg-color);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 55px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* التوافق مع الموبايل */
+
+@media (max-width: 768px) {
+    .navbar {
+        align-items: center;
+        /* ضمان التمركز العمودي */
+    }
+    .navbar .menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .navbar .menu-toggle {
+        display: block;
+    }
+    .theme-toggle {
+        position: Flexbox;
+        /* إذا كنت ترغب في جعله ثابتًا عند التمرير */
+        top: 10px;
+        right: 15px;
+        z-index: 1000;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        position: absolute;
+        /* مكان القائمة على الشاشات الصغيرة */
+        top: 40px;
+        /* أسفل الـ Navbar */
+        right: 10px;
+        /* إضافة مسافة صغيرة عن الحافة اليمنى */
+        width: auto;
+        /* العرض يتكيف مع المحتوى */
+        min-width: 150px;
+        /* عرض أدنى للقائمة */
+        max-width: 90%;
+        /* عرض أقصى للقائمة لتجنب تجاوز الشاشة */
+    }
+    .menu li {
+        padding: 10px 15px;
+        /* مسافات لعناصر القائمة */
+    }
+    .menu li a {
+        font-size: 18px;
+        /* حجم الخط أكبر قليلاً */
+    }
+}

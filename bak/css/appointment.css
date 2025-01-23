@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+ :root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --sidebar-bg: #f1f1f1;
+    --highlight-color: #007bff;
+    --border-color: #ddd;
+    --hover-color: #e0e0e0;
+    --h3-color: #000;
+    --footer_headre: linear-gradient(135deg, #007bff, #8633b3);
+    --bg-color_day: #f8f9fa;
+    --font-family: 'Poppins', sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --card-bg: #1e1e1e;
+    --sidebar-bg: #1e1e1e;
+    --highlight-color: #1e90ff;
+    --border-color: #6e4242;
+    --hover-color: #333;
+    --h3-color: #ffcc00;
+    --footer_headre: linear-gradient(135deg, #555, #777);
+    --bg-color_day: #444;
+    --font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    font-family: var(--font-family);
+    height: 100%;
+    /* لجعل الصفحة بالكامل تغطي الشاشة */
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+}
+
+main {
+    flex: 1;
+    /* يتمدد لملء المساحة المتبقية */
+}
+
+header {
+    padding: 20px;
+    background: var(--footer_headre);
+    color: var(--text-color);
+    position: relative;
+    /* clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+header img.logo {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+    /* لضمان الحفاظ على تناسب الصورة */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+    color: #f1f1f1;
+}
+
+.language-selector {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.language-selector select {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.booking-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* #calendar {
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 10px;
+        } */
+
+#calendar {
+    width: 100%;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+#time-slots {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.slot {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f5f5f5;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.slot.unavailable {
+    background: #ddd;
+    cursor: not-allowed;
+}
+
+.slot.selected {
+    background: #007bff;
+    color: white;
+}
+
+#calendar-container {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#current-month {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#selected-date {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #00ff40;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    /* لمحاذاة العناصر عموديًا في الوسط */
+    gap: 10px;
+    /* مسافة بين العناصر */
+}
+
+#selected-date1 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.day.unavailable {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.day.selected {
+    background: #007bff;
+    color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* عدد الأعمدة */
+    gap: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.slot {
+    padding: 10px;
+    text-align: center;
+    background: var(--bg-color_day);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.slot.unavailable {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.slot.selected {
+    background: #007bff;
+    color: white;
+}
+
+#form-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#form-details input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+#form-details input:focus {
+    border-color: var(--border-color);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    background: var(--bg-color);
+}
+
+#form-details button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#form-details button:hover {
+    background-color: #0056b3;
+}
+
+#summary {
+    font-family: var(--font-family);
+    display: flex;
+    background: var(--bg-color_day);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    max-width: 470px;
+    margin: 20px auto;
+    display: none;
+    margin-top: 20px;
+}
+
+#summary h4 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+#summary p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+footer {
+    background: var(--footer_headre);
+    color: var(--text-color);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
+.privacy-note {
+    font-size: 0.9rem;
+    color: #6c757d;
+    /* لون رمادي خفيف */
+    margin-top: 10px;
+    text-align: center;
+    /* محاذاة النص إلى المنتصف */
+    line-height: 1.5;
+}
+
+
+/* حاوية الشهر */
+
+.month-container {
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* اسم الشهر */
+
+.month-header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: var(--sidebar-bg);
+    border-radius: 5px;
+    box-shadow: inset 0 -1px 0 var(--border-color);
+}
+
+
+/* شبكة الأيام */
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* 7 أيام في الصف */
+    gap: 10px;
+    /* مسافة بين الأيام */
+}
+
+
+/* الأيام */
+
+.day {
+    padding: 10px;
+    background: var(--bg-color_day);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.day span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.day:hover {
+    background-color: var(--highlight-color);
+    transform: scale(1.05);
+}
+
+
+/* الأيام غير المتاحة */
+
+.day.unavailable {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.user-appointment {
+    background-color: #355c3f !important;
+    /* لون أخضر */
+    color: white;
+    font-weight: bold;
+}
+
+.message-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.message-container h2 {
+    font-size: 1.8rem;
+    color: var(--h3-color);
+}
+
+.message-container p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+
+/* دعم الشاشات الصغيرة جدًا */
+
+
+/* دعم الشاشات الصغيرة والمتوسطة */
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+    }
+    header .logo {
+        max-width: 100px;
+        /* تقليل حجم الشعار */
+        margin-bottom: 10px;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 8px;
+        /* تقليل المسافات */
+        align-items: center;
+        /* محاذاة الروابط إلى الوسط */
+    }
+    .nav-menu li {
+        width: 100%;
+        /* جعل الروابط تملأ العرض */
+    }
+    .nav-menu li a {
+        font-size: 14px;
+        padding: 10px;
+        text-align: center;
+        /* محاذاة النصوص إلى الوسط */
+    }
+    .language-selector {
+        margin-top: 10px;
+    }
+    .booking-section {
+        padding: 15px;
+        margin: 10px;
+    }
+    #calendar {
+        grid-template-columns: repeat(3, 1fr);
+        /* تقليل الأعمدة */
+        gap: 5px;
+        /* تقليل المسافات بين الأيام */
+    }
+    .day {
+        padding: 8px;
+        /* تقليل حجم الأيام */
+        font-size: 12px;
+    }
+    #time-slots {
+        margin: 10px 0;
+    }
+    .slot {
+        font-size: 12px;
+        /* تقليل حجم النص */
+        padding: 8px;
+    }
+    #form-details input,
+    #form-details button {
+        font-size: 14px;
+        /* تصغير النص */
+        padding: 8px;
+        /* تقليل الحشوات */
+        width: 100%;
+        /* ملء العرض بالكامل */
+    }
+    #summary {
+        font-size: 12px;
+        /* تصغير النصوص */
+        padding: 10px;
+        text-align: center;
+        /* محاذاة النصوص إلى الوسط */
+    }
+}
+
+
+/* دعم الشاشات الصغيرة جدًا */
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+    header .logo {
+        max-width: 80px;
+        /* مزيد من تقليل حجم الشعار */
+    }
+    .nav-menu li a {
+        font-size: 12px;
+    }
+    #calendar {
+        grid-template-columns: repeat(2, 1fr);
+        /* تقليل الأعمدة إلى اثنين */
+    }
+    .day {
+        font-size: 10px;
+        /* تصغير النصوص */
+        padding: 6px;
+    }
+    #slots-container {
+        grid-template-columns: repeat(2, 1fr);
+        /* الأعمدة للساعات */
+    }
+    #summary {
+        font-size: 10px;
+        padding: 8px;
+    }
+    footer {
+        font-size: 10px;
+        /* تصغير النصوص في الفوتر */
+    }
+}

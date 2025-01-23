@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Azorpub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/appointment.css?v=1.0">
+    <script src="js/appointment.js?v=1.0"></script>
+</head>
+
+<body data-theme="light">
+    <header>
+        <div class="header-content"><img src="images/icons/logo 1143X636.png" alt="Azorpub Logo" class="logo">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-lang="nav-home">Home</a></li>
+                    <li><a href="gallery.html" data-lang="nav-gallery">Gallery</a></li>
+                    <li><a href="contact.html" data-lang="nav-contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <select id="lang-selector">
+                    <option value="en">EN</option>
+                    <option value="nl">NL</option>
+                    <option value="ar">AR</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="message-container" id="statusMessage-Container">
+            <h2 data-lang="status-title" id="status-title"></h2>
+            <p data-lang="status-message" id="status-message"></p>
+            <div id="action-buttons">
+                <button id="renew-btn" style="display: none;" onclick="renewAppointment()">تجديد الموعد</button>
+                <button id="book-new-btn" style="display: none;" onclick="bookNewAppointment()">حجز موعد جديد</button>
+            </div>
+        </div>
+        <section class="booking-section">
+            <h2 data-lang="main-title" style=" text-align: center; color: var(--text-color);">Book Your Appointment</h2>
+            <!-- التقويم -->
+
+            <div id="calendar-container">
+                <h2 id="current-month"></h2>
+                <!-- عرض الشهر الحالي -->
+                <div id="calendar"></div>
+            </div>
+            <div id="time-slots" style="display: none;">
+                <div class="flex-container">
+                    <h3 data-lang="selected-date" id="selected-date1">Selected Date:</h3>
+                    <h3 id="selected-date"></h3>
+                </div>
+
+
+                <!-- عرض اليوم والشهر والسنة -->
+                <div id="slots-container" class="grid-container"></div>
+
+            </div>
+            <!-- نموذج إدخال الاسم والبريد -->
+            <div id="booking-form" style="display: none; margin-top: 20px;">
+                <h3 data-lang="form-title" style=" text-align: center; color: var(--text-color); text-align: center;">Enter Your Details</h3>
+                <form id="form-details">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <p id="booking-message" style="color: red; font-size: 14px; display: none;"></p>
+                    <button data-lang="confirm-button" type="submit">Confirm Booking</button>
+                </form>
+                <!-- رسالة تظهر تحت الحقول -->
+                <div id="email-exists-message" style="display: none; color: red; margin-top: 10px;">
+                    This email already has a booking.
+                    <button id="forgot-appointment" style="background: none; color: blue; text-decoration: underline; cursor: pointer;">Forgot your appointment?</button>
+                </div>
+
+                <p class="privacy-note" data-lang="privacy-note">
+                    Your name and email will only be used to send you details about your appointment. We value your privacy.
+                </p>
+                <!-- إضافة عنصر الرسالة هنا -->
+                <div id="booking-success-message" style="display: none; margin-top: 10px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; border-radius: 5px;">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p data-lang="footer-rights">© 2024 Azorpub. All rights reserved.</p>
+        <p data-lang="footer-developed">Developed by Azorpub Team.</p>
+    </footer>
+
+
+
+</body>
+
+</html>
+
+</html>

@@ -1,0 +1,225 @@
+/* ==========================
+   GENERAL STYLES
+============================= */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+
+/* ==========================
+   HEADER
+============================= */
+
+header {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    padding: 15px;
+    /* padding: 20px 20px 40px; */
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.logo {
+    max-width: 120px;
+    height: auto;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+    color: #f1f1f1;
+}
+
+.language-selector {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.language-selector select {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ==========================
+   GALLERY SECTION
+============================= */
+
+.products-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.gallery-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #007bff;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.gallery img {
+    max-width: 100%;
+    width: 200%;
+    height: 200px;
+    /* height: auto; */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ==========================
+   FOOTER
+============================= */
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* الوضع الداكن */
+
+body.dark-mode footer {
+    background-color: #333;
+    color: white;
+}
+
+
+/* الوضع الفاتح */
+
+body.light-mode footer {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: black;
+}
+
+
+/* ==========================
+   LIGHTBOX
+============================= */
+
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+}
+
+
+/* ==========================
+   DARK MODE
+============================= */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: white;
+    }
+    header {
+        background: linear-gradient(135deg, #222, #444);
+        color: white;
+    }
+    .gallery-title {
+        color: #00d4ff;
+    }
+    .gallery {
+        background-color: #121212;
+    }
+    .gallery img {
+        border: 2px solid #555;
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    footer {
+        background-color: #222;
+        color: white;
+    }
+}
+
+
+/* ==========================
+   RESPONSIVE DESIGN
+============================= */
+
+@media (min-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+    .gallery-title {
+        font-size: 1.5rem;
+    }
+}

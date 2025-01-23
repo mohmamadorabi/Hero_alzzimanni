@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbershop Azzimani</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://kit.fontawesome.com/4bd66741d3.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <style>
+        /* تصميم الهيدر */
+        
+        header {
+            width: 100%;
+            max-width: 100vw;
+            /* ضمان أن لا يتجاوز عرض الهيدر عرض الشاشة */
+            backdrop-filter: blur(0);
+            transition: backdrop-filter 0.5s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            /* توزيع العناصر */
+            align-items: center;
+            justify-content: center;
+            /* توسيط العناصر أفقيًا */
+            /* تمركز عمودي */
+            /* padding: 10px 20px; */
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            /* تأثير التمويه */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 90px;
+            /* ارتفاع الهيدر */
+            border-bottom: 2px solid #555;
+            /* خط الفاصل */
+        }
+        
+        body.loaded header {
+            backdrop-filter: blur(10px);
+        }
+        /* الشعار في المنتصف */
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 110px;
+            /* تكبير الشعار */
+            max-width: 120px;
+            /* الحد الأقصى للعرض */
+        }
+        /* القائمة الرئيسية (الشاشات الكبيرة) */
+        /* إخفاء القائمة الرئيسية على الموبايل */
+        
+        .main-nav {
+            align-items: center;
+            display: block;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 60px;
+            /* مسافة بين العناصر */
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            /* تكبير حجم النص */
+            transition: color 0.3s ease;
+            /* اجعل النص شفافًا */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 1), /* ظل داكن للحفر */
+            -1px -1px 2px rgba(255, 255, 255, 0.2);
+            /* إضاءة خفيفة من الأعلى */
+            background: linear-gradient(135deg, #ffffff, #c0c0c0);
+            /* خلفية للنص */
+            -webkit-background-clip: text;
+            /* قص الخلفية على النص */
+            background-clip: text;
+            animation: float 1s infinite alternate;
+        }
+        
+        .main-nav ul li a:hover {
+            color: #ffcc00;
+            /* تغيير اللون عند التمرير */
+        }
+        
+        .mobile-nav ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            /* المسافة بين الكلمة والخط السفلي */
+            left: 0;
+            width: 100%;
+            /* امتداد الخط على عرض العنصر */
+            height: 1px;
+            background-color: #555;
+            transition: background-color 0.3s ease;
+        }
+        
+        .mobile-nav ul li a:hover::after {
+            background-color: #ffcc00;
+            /* تغيير لون الخط عند التمرير */
+        }
+        
+        .main-nav ul li a:hover {
+            color: #ffcc00;
+        }
+        /* زر القائمة (للموبايل) */
+        
+        .menu-icon {
+            display: none;
+            align-items: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #fff;
+            margin: 15px 15px 15px 15px;
+        }
+        /* القائمة المنسدلة للموبايل */
+        
+        .mobile-nav {
+            position: absolute;
+            top: 90px;
+            /* تحت الهيدر */
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            /* خلفية شفافة وغامقة */
+            backdrop-filter: blur(10px);
+            /* تأثير الزجاج */
+            -webkit-backdrop-filter: blur(10px);
+            /* دعم Safari */
+            overflow: hidden;
+            height: 0;
+            /* مخفية افتراضيًا */
+            transition: height 0.5s ease;
+            /* تأثير الانزلاق */
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            /* خط فاصل شفاف */
+            transition: height 0.5s ease;
+            /* تأثير الانزلاق */
+            /* border-top: 1px solid #555; */
+            border-bottom: 2px solid #555;
+            /* خط فاصل */
+        }
+        
+        .mobile-nav.open ul {
+            opacity: 1;
+            /* ظهور العناصر */
+        }
+        
+        .mobile-nav.open {
+            height: 200px;
+            /* ضبط الارتفاع الكافي لعرض الروابط */
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            padding: 10px 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mobile-nav ul li {
+            position: relative;
+        }
+        
+        .mobile-nav ul li a {
+            /* font-family: 'Oswald'; */
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 15px 15px;
+            /* التحكم بالمسافة العمودية */
+            text-align: left;
+            position: relative;
+            /* ضروري لإظهار ::after */
+            /* اجعل النص شفافًا */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 1), /* ظل داكن للحفر */
+            -1px -1px 2px rgba(255, 255, 255, 0.2);
+            /* إضاءة خفيفة من الأعلى */
+            background: linear-gradient(135deg, #ffffff, #c0c0c0);
+            /* خلفية للنص */
+            -webkit-background-clip: text;
+            /* قص الخلفية على النص */
+            background-clip: text;
+            animation: float 1s infinite alternate;
+        }
+        
+        .mobile-nav ul li a:hover {
+            color: #ffcc00;
+            border-bottom-color: #ffcc00;
+            /* تغيير لون الخط عند التمرير */
+        }
+        /* تصميم متجاوب للشاشات الصغيرة */
+        /* تنسيق الأيقونات اللغوية */
+        
+        .language-options {
+            display: flex;
+            justify-content: center;
+            /* توسيط الأيقونات */
+            gap: 15px;
+            /* مسافة بين الأيقونات */
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            /* خط فاصل تحت الأيقونات */
+        }
+        
+        .language-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            /* أيقونات دائرية */
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+        }
+        
+        .language-icon .flag-icon {
+            width: 24px;
+            height: 18px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .language-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* أزرار اللغة للشاشات الكبيرة */
+        
+        .language-options.desktop-only {
+            display: flex;
+            flex-direction: column;
+            /* ترتيب عمودي */
+            position: absolute;
+            right: 20px;
+            /* الجهة اليمنى */
+            /* top: 120px; */
+            /* المسافة من الأعلى */
+            gap: 10px;
+            /* مسافة بين الأيقونات */
+            z-index: 1000;
+        }
+        /* إخفاء أزرار اللغة للشاشات الكبيرة على الشاشات الصغيرة */
+        
+        @media (max-width: 768px) {
+            .language-options.desktop-only {
+                display: none;
+            }
+        }
+        /* أزرار اللغة داخل ناف الموبايل */
+        
+        .mobile-nav .language-options {
+            display: flex;
+            flex-direction: row;
+            /* ترتيب أفقي */
+            justify-content: center;
+            gap: 10px;
+            /* مسافة بين الأيقونات */
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            /* خط فاصل */
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                justify-content: space-between;
+            }
+            .main-nav {
+                display: none;
+                /* إخفاء القائمة الرئيسية */
+            }
+            .menu-icon {
+                display: flex;
+                /* إظهار زر القائمة */
+                /* زر القائمة يظهر */
+            }
+            .logo img {
+                height: 100px;
+                /* تصغير حجم الشعار */
+            }
+        }
+        /* تحسين التنسيق للشاشات الكبيرة */
+        
+        @media (min-width: 992px) {
+            header {
+                /* padding: 30px 60px; */
+                /* زيادة المسافات */
+                height: 180px;
+                /* تكبير الهيدر أكثر */
+                position: sticky;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+                backdrop-filter: blur(10px);
+            }
+            .logo {
+                margin: 100px;
+            }
+            .logo img {
+                height: 240px;
+                /* تكبير الشعار */
+                max-width: 260px;
+                /* تكبير الشعار أكثر */
+            }
+            .main-nav ul li a {
+                font-size: 1.5rem;
+                /* تكبير حجم النص أكثر */
+            }
+            .mobile-nav {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Header Section -->
+    <header>
+        <!-- القائمة الرئيسية للشاشات الكبيرة -->
+        <nav class="main-nav">
+            <ul>
+                <li><a id="navHome" href="#home">Home</a></li>
+                <li><a id="navServices" href="#services">Services</a></li>
+                <li><a id="navGallery" href="#gallery">Gallery</a></li>
+            </ul>
+
+        </nav>
+        <!-- الشعار -->
+        <div class="logo">
+            <a href="index.html">
+                <img src="./images/logo2.png" alt="Barbershop Azzimani Logo">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a id="navShop" href="#shop">Shop</a></li>
+                <li><a id="navContact" href="#contact">Contact</a></li>
+            </ul>
+
+        </nav>
+        <!-- أزرار اللغة للشاشات الكبيرة -->
+        <div class="language-options desktop-only">
+            <a href="#" class="language-icon" id="nl" title="Dutch">
+                <span class="flag-icon flag-icon-nl"></span>
+            </a>
+            <a href="#" class="language-icon" id="en" title="English">
+                <span class="flag-icon flag-icon-gb"></span>
+            </a>
+            <a href="#" class="language-icon" id="ar" title="Arabic">
+                <span class="flag-icon flag-icon-sa"></span>
+            </a>
+        </div>
+        <!-- زر القائمة للموبايل -->
+        <div class="menu-icon" id="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+            <!-- أيقونة القائمة -->
+        </div>
+
+        <!-- القائمة المنسدلة للموبايل -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <!-- قسم الأيقونات اللغوية -->
+            <div class="language-options">
+                <a href="#" class="language-icon" id="nl" title="Dutch">
+                    <span class="flag-icon flag-icon-nl"></span>
+                </a>
+                <a href="#" class="language-icon" id="en" title="English">
+                    <span class="flag-icon flag-icon-gb"></span>
+                </a>
+                <a href="#" class="language-icon" id="ar" title="Arabic">
+                    <span class="flag-icon flag-icon-sa"></span>
+                </a>
+            </div>
+            <ul>
+                <li><a id="navHome1" href="#home">Home</a></li>
+                <li><a id="navServices1" href="#services">Services</a></li>
+                <li><a id="navGallery1" href="#gallery">Gallery</a></li>
+                <li><a id="navShop1" href="#shop">Shop</a></li>
+                <li><a id="navContact1" href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <style>
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .hero .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            filter: blur(10px);
+            /* تمويه مبدئي */
+            transform: scale(1.1);
+            /* تكبير بسيط */
+            transition: transform 1.5s ease, opacity 1.5s ease, filter 1.5s ease;
+        }
+        /* عند التفعيل */
+        
+        .slide.active img {
+            opacity: 1;
+            filter: blur(0);
+            /* إزالة التمويه */
+            transform: scale(1);
+            /* العودة للحجم الطبيعي */
+        }
+        
+        .dots {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .dot.active {
+            background: #ffcc00;
+        }
+        
+        .caption {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .slide.active .caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <section class="hero">
+        <div class="slider">
+            <div class="slide">
+                <img src="images/1.jpg" alt="Slide 1">
+                <div class="caption">
+                    <h1 id="slide1Title">A Cut Above the Rest</h1>
+                    <p id="slide1Text">Experience precision and style with every snip.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/2.jpg" alt="Slide 2">
+                <div class="caption">
+                    <h1 id="slide2Title">Timeless Elegance</h1>
+                    <p id="slide2Text">Classic grooming for the modern gentleman.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/3.jpeg" alt="Slide 3">
+                <div class="caption">
+                    <h1 id="slide3Title">The Art of Grooming</h1>
+                    <p id="slide3Text">Redefining your style, one haircut at a time.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/4.jpg" alt="Slide 4">
+                <div class="caption">
+                    <h1 id="slide4Title">Sharp Looks, Smooth Finish</h1>
+                    <p id="slide4Text">Tailored grooming to match your personality.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/5.jpg" alt="Slide 5">
+                <div class="caption">
+                    <h1 id="slide5Title">Confidence Starts Here</h1>
+                    <p id="slide5Text">Feel your best with a perfect cut.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/6.jpg" alt="Slide 6">
+                <div class="caption">
+                    <h1 id="slide6Title">Refined & Redefined</h1>
+                    <p id="slide6Text">Crafting your signature look with precision.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/7.jpg" alt="Slide 7">
+                <div class="caption">
+                    <h1 id="slide7Title">Where Tradition Meets Trend</h1>
+                    <p id="slide7Text">Blending classic techniques with modern flair.</p>
+                </div>
+            </div>
+            <div class="slide active">
+                <img src="images/8.jpg" alt="Slide 8">
+                <div class="caption">
+                    <h1 id="slide8Title">Elevate Your Style</h1>
+                    <p id="slide8Text">Step into sophistication and leave with confidence.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/9.jpg" alt="Slide 9">
+                <div class="caption">
+                    <h1 id="slide9Title">Mastering the Details</h1>
+                    <p id="slide9Text">Attention to detail in every cut and trim.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/10.jpg" alt="Slide 10">
+                <div class="caption">
+                    <h1 id="slide10Title">Your Style, Our Expertise</h1>
+                    <p id="slide10Text">Delivering tailored grooming for every gentleman.</p>
+                </div>
+            </div>
+            <!-- نقاط التنقل -->
+            <div class="dots">
+                <span class="dot active" data-index="0"></span>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <style>
+        /* تصميم القسم */
+        
+        #servicesTitle {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #b3c41a;
+        }
+        /* تصميم الشبكة */
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* شبكة تلقائية */
+            gap: 20px;
+            justify-items: center;
+            /* محاذاة الكروت في المنتصف */
+        }
+        /* تصميم الكروت */
+        
+        .service {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            /* تأثير التمويه */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            /* لجعل الكروت مدورة */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            color: #fff;
+        }
+        
+        .services {
+            /* background: url('images/tools.jpg') no-repeat center center/cover; */
+            position: relative;
+            padding: 50px 20px;
+            color: #fff;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* تعتيم */
+            backdrop-filter: blur(5px);
+            /* تعتيم الخلفية */
+            z-index: -1;
+        }
+        
+        .service:hover {
+            transform: scale(1.15) rotate(5deg);
+            /* تكبير مع دوران */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .service i {
+            font-size: 40px;
+            color: #ffcc00;
+            /* margin-bottom: 10px; */
+            transition: color 0.3s;
+        }
+        
+        .service:hover i {
+            transform: scale(1.2);
+            /* تكبير الأيقونة عند التمرير */
+            color: #ff9900;
+        }
+        
+        .service:hover h3,
+        .service:hover p {
+            opacity: 1;
+            transform: translateY(-10px);
+            /* رفع النص قليلاً */
+            transition: all 0.3s ease;
+        }
+        
+        .service h3 {
+            font-size: 1.2rem;
+            color: #ff9900;
+            margin-bottom: 10px;
+        }
+        
+        .service p {
+            font-size: 0.9rem;
+            color: white;
+            line-height: 1.4;
+        }
+        /* تصميم متجاوب للشاشات الصغيرة */
+        
+        .wave-container {
+            width: 100%;
+            height: 120px;
+            /* الارتفاع المناسب */
+            overflow: hidden;
+            /* منع المحتوى الزائد */
+            background: none;
+            position: relative;
+            /* animation: wave-motion 5s infinite alternate; */
+        }
+        
+        .wave-container svg {
+            width: 120%;
+            height: 100%;
+            /* ضمان أن يملأ الـ SVG الحاوية */
+            display: block;
+            /* إزالة الفراغات الناتجة عن SVG كعنصر inline */
+            position: absolute;
+            bottom: 0;
+            /* تثبيت الموجة في أسفل الحاوية */
+        }
+        
+        @keyframes wave-motion {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(10px);
+            }
+        }
+        
+        .wave-container path {
+            animation: waveMoveAlt 8s ease-in-out infinite;
+        }
+        
+        @keyframes waveMoveAlt {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(-50px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        svg {
+            width: 100%;
+            display: block;
+            margin-top: -5px;
+        }
+        
+        @media (max-width: 480px) {
+            .service-grid {
+                grid-template-columns: 1fr 1fr;
+                /* دائرتين في الصف */
+                gap: 15px;
+            }
+            .service {
+                width: 120px;
+                height: 120px;
+            }
+            .service h3 {
+                font-size: 1rem;
+            }
+            .service p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <section class="wave-container">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#283747" fill-opacity="0.7" d="M0,64L30,85.3C60,107,120,149,180,160C240,171,300,149,360,144C420,139,480,149,540,165.3C600,181,660,203,720,197.3C780,192,840,160,900,138.7C960,117,1020,107,1080,117.3C1140,128,1200,160,1260,176C1320,192,1380,192,1410,192L1440,192L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
+            <path fill="#1c2833" fill-opacity="0.5" d="M0,128L60,160C120,192,240,256,360,250.7C480,245,600,171,720,144C840,117,960,139,1080,160C1200,181,1320,203,1380,213.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+            <path fill="#2e4053" fill-opacity="0.3" d="M0,160L50,176C100,192,200,224,300,202.7C400,181,500,107,600,101.3C700,96,800,160,900,165.3C1000,171,1100,117,1200,96C1300,75,1400,85,1450,90L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+        </svg>
+        <!-- "#ffcc00" -->
+    </section>
+    <section class="services">
+        <h2 id="servicesTitle">Our Services</h2>
+        <div class="service-grid">
+            <div class="service">
+                <i class="fa fa-cut"></i>
+                <h3 id="service1Title">Haircut</h3>
+                <p id="service1Text">Modern styles to match your taste.</p>
+            </div>
+            <div class="service">
+                <i class="fa fa-brush"></i>
+                <h3 id="service2Title">Beard Grooming</h3>
+                <p id="service2Text">Stay sharp and stylish.</p>
+            </div>
+            <div class="service">
+                <i class="fa fa-spa"></i>
+                <h3 id="service3Title">Skin Care</h3>
+                <p id="service3Text">Refresh and rejuvenate your skin.</p>
+            </div>
+            <div class="service">
+                <i class="fa fa-shield-alt"></i>
+                <h3 id="service4Title">Hair Treatment</h3>
+                <p id="service4Text">Protect and nourish your hair.</p>
+            </div>
+            <div class="service">
+                <i class="fa fa-tint"></i>
+                <h3 id="service5Title">Hair Coloring</h3>
+                <p id="service5Text">Bold colors to express your style.</p>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* تخصيص الخط الفاصل */
+        
+        .separator {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #ffcc00, #ff9900, #ffcc00);
+            /* تأثير تدرجي */
+            margin-top: 50px;
+            /* إضافة مسافة فوق وتحت الخط */
+            border: none;
+            position: relative;
+        }
+        /* تأثير الظل للخط */
+        
+        .separator::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            /* تحريك الظل قليلاً فوق الخط */
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+            /* تأثير الظل */
+            border-radius: 3px;
+        }
+        /* تنسيق القسم بالكامل */
+        
+        .contact-info {
+            /* background-color: rgba(255, 255, 255, 0.5); */
+            /* خلفية شفافة */
+            padding: 50px 0px;
+            text-align: center;
+            background: none;
+            /* backdrop-filter: blur(10px); */
+            /* تأثير الزجاج */
+            /* border-radius: 10px; */
+            /* زوايا دائرية */
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); */
+            /* تأثير الظل */
+        }
+        /* حاوية القسم */
+        
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 0;
+            flex-wrap: wrap;
+            flex-direction: row-reverse;
+            /* عكس الترتيب ليصبح من اليمين لليسار */
+        }
+        /* تنسيق العناصر داخل كل عمود */
+        
+        .info-item {
+            width: 33.33%;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-item i {
+            font-size: 40px;
+            color: #e01391;
+            margin-bottom: 15px;
+        }
+        
+        .info-item h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .info-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        /* زر الحجز */
+        
+        .info-item .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e01391;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .info-item .btn:hover {
+            background-color: #ffcc00;
+        }
+        
+        .hour-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+            margin: 0;
+            /* إزالة المسافة بين العناصر */
+            padding: 5px 0;
+            /* تقليل المسافة بين السطور */
+            line-height: 0;
+            /* تقليل المسافة بين الأسطر */
+        }
+        
+        .hour-item h4 h5 {
+            color: #000000;
+            margin: 0;
+        }
+        
+        .info-item h3 {
+            color: #ffcc00;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .info-item:nth-child(1) {
+            background-image: url('images/01.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 3px 0;
+            /* تقليل المسافة بين السطور */
+            line-height: 0.1;
+            /* box-sizing: border-box; */
+        }
+        
+        .info-item:nth-child(1) h3 {
+            color: white;
+        }
+        
+        .info-item:nth-child(1) h4 {
+            color: white;
+        }
+        
+        .info-item:nth-child(1) h5 {
+            color: white;
+        }
+        
+        .info-item:nth-child(2) {
+            background-color: #E8E3D7;
+        }
+        
+        .info-item:nth-child(2) h3 {
+            color: black;
+            font-size: 3rem;
+            font-weight: normal;
+            text-shadow: 0 2px 5px rgba(63, 63, 63, 0.7);
+            opacity: 1;
+            transform: translateY(0px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-bottom: 15px;
+        }
+        
+        .info-item:nth-child(2) p {
+            word-wrap: break-word;
+            /* لتمكين النص من الانكسار عند الحاجة */
+            text-align: justify;
+            margin: 0 20px;
+            line-height: 2;
+        }
+        
+        .info-item:nth-child(3) {
+            background-image: url('images/02.jpg');
+            background-size: cover;
+            /* تغطي الصورة كامل المساحة */
+            background-position: center;
+            /* وضع الصورة في المنتصف */
+            padding: 20px;
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* width: 10; */
+            text-align: start;
+            display: flex;
+            flex-direction: column;
+            /* لضبط العناصر عموديًا */
+            justify-content: center;
+            /* توسيط العناصر عموديًا */
+            align-items: center;
+            /* توسيط العناصر أفقيًا */
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .info-item:nth-child(3) p {
+            color: #fff;
+            /* width: 100%; */
+            text-align: left;
+        }
+        
+        .info-item:nth-child(3) h3 {
+            text-shadow: 0 2px 5px rgba(63, 63, 63, 0.7);
+            opacity: 1;
+            transform: translateY(0px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-bottom: 15p
+        }
+        /* تخصيص العرض على الشاشات الصغيرة */
+        
+        .opening-Hours {
+            border: 5px solid #ffcc00;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-right: 30px;
+            margin-left: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-item {
+                /* width: 90%; */
+                /* margin-bottom: 20px; */
+                width: 100%;
+                /* جعل الكرت يشغل عرض الصفحة بالكامل */
+                box-sizing: border-box;
+                /* تأكد من أن المسافات padding و border لا تؤثر على العرض */
+                margin: 20px 0;
+                /* مسافة بين الكروت */
+            }
+        }
+    </style>
+    <div class="separator"></div>
+    <section class="contact-info">
+        <div class="container">
+            <!-- قسم مواعيد العمل -->
+            <div class="info-item">
+                <div class="opening-Hours">
+                    <h3 id="openingHours">Openingstijden</h3>
+                    <div class="hour-item">
+                        <h4 id="monday">Maandag</h4>
+                        <h5 id="mondayHours">10:00 - 20:00</h5>
+                    </div>
+                    <div class="hour-item">
+                        <h4 id="tuesday">Dinsdag</h4>
+                        <h5 id="tuesdayHours">10:00 - 20:00</h5>
+                    </div>
+                    <div class="hour-item">
+                        <h4 id="wednesday">Woensdag</h4>
+                        <h5 id="wednesdayHours">10:00 - 20:00</h5>
+                    </div>
+                    <div class="hour-item">
+                        <h4 id="thursday">Donderdag</h4>
+                        <h5 id="thursdayHours">10:00 - 20:00</h5>
+                    </div>
+                    <div class="hour-item">
+                        <h4 id="friday">Vrijdag</h4>
+                        <h5 id="fridayHours">10:00 - 13:00</h5>
+                        <h5 id="fridayEvening">15:00 - 20:00</h5>
+                    </div>
+                    <div class="hour-item">
+                        <h4 id="saturday">Zaterdag</h4>
+                        <h5 id="saturdayHours">10:00 - 20:00</h5>
+                    </div>
+                    <div class="hour-item">
+                        <h4 id="sunday">Zondag</h4>
+                        <h5 id="sundayClosed">Gesloten</h5>
+                    </div>
+                </div>
+
+
+                <div>
+                    <span class="vc_sep_holder vc_sep_holder_l"><span class="vc_sep_line"></span></span>
+                    <span class="vc_sep_holder vc_sep_holder_r"><span class="vc_sep_line"></span></span>
+                </div>
+                <div class="divider" style="width: 80%; border-top: 3px solid white;  margin: 10px auto;"></div>
+                <div class="wpb_text_column wpb_content_element">
+                    <div class="wpb_wrapper">
+                        <h4 id="lunchBreak" style="text-align: center; color: white;">Gesloten tussen 12.00 en 13.00 uur</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- قسم "About Us" -->
+            <div class="info-item">
+                <!-- <i class="fa fa-info-circle"></i> -->
+                <h3 id="aboutUsTitle">About Us</h3>
+                <img src="images/dark_seperator.png" alt="Image" class="hour-item-image">
+                <p id="aboutUsText">At Barbershop Azzimani, we combine traditional barbering techniques with modern styles to create a personalized grooming experience. Our expert barbers take the time to understand your needs, ensuring you leave feeling refreshed and confident.
+                    We pride ourselves on using high-quality products and offering a welcoming atmosphere for all our clients. Whether you're after a classic look or a contemporary style, we are committed to providing exceptional service every time you
+                    visit. Join us and experience the perfect blend of luxury, tradition, and style at Barbershop Azzimani – where grooming meets excellence.</p>
+            </div>
+            <!-- قسم الاتصال والحجز -->
+            <div class="info-item">
+                <!-- <i class="fa fa-phone"></i> -->
+                <h3>Barbershop Azzimani</h3>
+                <p id="phone">call us: +123 456 7890</p>
+                <a href="booking.html" class="btn" id="bookNow">Book Now</a>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* تنسيق القسم بالكامل */
+        
+        .pricing {
+            padding: 40px 20px;
+            background-color: #F4F2EB;
+            color: #fff;
+            text-align: center;
+            /* backdrop-filter: blur(10px); */
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+        }
+        /* تنسيق حاوية الأسعار */
+        
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* تنسيق العنوان */
+        
+        .pricing h2 {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+        }
+        /* تنسيق الوصف */
+        
+        .pricing-description p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        /* تنسيق التنويه */
+        
+        .pricing-note {
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+        /* تنسيق صندوق الأسعار */
+        
+        .pricing-box {
+            background: none;
+            padding: 0 15px 10px 20px;
+            /* top, right, bottom, left */
+            border-radius: 10px;
+            border: 3px solid #ffcc00;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+            display: inline-block;
+            width: 30%;
+            text-align: left;
+            line-height: 3;
+            flex-wrap: wrap;
+            /* السماح بلف العناصر ضمن الصندوق */
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            width: 100%;
+            position: relative;
+        }
+        
+        .price-item .price-name {
+            text-align: left;
+            width: auto !important;
+            color: #000;
+        }
+        
+        .price-item .price-value {
+            text-align: right;
+            color: #b8860b;
+        }
+        
+        .price-item .price-divider {
+            flex-grow: 1;
+            border-bottom: 2px dotted #000;
+            margin: 0 10px;
+            text-align: center;
+        }
+        
+        .pricing-box h3 {
+            font-size: 2rem;
+            color: black;
+            margin-top: 10px;
+            /* تقليل المسافة بين العنوان وأعلى الصندوق */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .price-title {
+            font-size: 1.2rem;
+            color: black;
+        }
+        /* زر الحجز */
+        
+        .pricing-booking .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .pricing-booking .btn:hover {
+            background-color: #e01391;
+            color: #fff;
+        }
+        /* تخصيص للشاشات الصغيرة */
+        /* تخصيص صندوق الأسعار على الشاشات الصغيرة */
+        
+        @media (max-width: 768px) {
+            .pricing-box {
+                width: 100%;
+                padding: 15px;
+                box-sizing: border-box;
+                /* التأكد من أن الحواف وال padding لا تؤثر على العرض */
+                margin: 0 auto;
+                /* ضمان أن الصندوق يتوسط الصفحة */
+            }
+            .separator {
+                display: none;
+                /* إخفاء الخط المنقط بين العناصر */
+            }
+            .pricing h2 {
+                font-size: 1.8rem;
+                /* تقليل حجم الخط على الهواتف */
+            }
+            .pricing-description p {
+                font-size: 1rem;
+                /* تحسين حجم الخط */
+            }
+            .pricing-note {
+                font-size: 1rem;
+            }
+            .pricing-note p {
+                font-size: 0.9rem;
+            }
+            .pricing-booking .btn {
+                padding: 10px 20px;
+                font-size: 1.1rem;
+                /* تحسين حجم الزر */
+            }
+        }
+        
+        .separator1 {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #ffcc00, #ff9900, #ffcc00);
+            border: none;
+            position: relative;
+        }
+        /* تأثير الظل للخط */
+        
+        .separator1::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            /* تحريك الظل قليلاً فوق الخط */
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+            /* تأثير الظل */
+            border-radius: 3px;
+        }
+    </style>
+    <div class="separator1"></div>
+    <section class="pricing">
+        <div class="pricing-container">
+            <!-- العنوان -->
+            <h2 data-lang="pricing-title">Our Pricing Plans</h2>
+
+            <!-- الصورة -->
+            <div class="pricing-image">
+                <img src="images/dark_seperator.png" alt="Pricing Image">
+            </div>
+
+            <!-- الوصف -->
+            <div class="pricing-description" style="color: black;">
+                <p data-lang="pricing-description">At Barbershop Azzimani, we offer flexible pricing based on the services you choose. Each grooming experience is tailored to your specific needs, ensuring you get the best value for your visit.</p>
+            </div>
+
+            <!-- التنويه -->
+            <div class="pricing-note" style="color: black;">
+                <p><strong data-lang="pricing-note">Note:</strong> <span data-lang="pricing-note-description">Prices may vary depending on your pre-booking time or special requests. For more details, please contact us directly.</span></p>
+            </div>
+
+            <!-- صندوق الأسعار -->
+            <div class="pricing-box">
+                <h3 data-lang="pricing-box-title">Our Services Prices</h3>
+
+                <div class="price-item">
+                    <span class="price-name" data-lang="basic-cut-title">Knippen Heren</span>
+                    <span class="price-divider"></span>
+                    <span class="price-value" data-lang="basic-cut-price">20 €</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name" data-lang="beard-grooming-title">Kinderen</span>
+                    <div class="price-divider"></div>
+                    <span class="price-value" data-lang="beard-grooming-price">15 €</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name" data-lang="full-package-title">Baard.M</span>
+                    <div class="price-divider"></div>
+                    <span class="price-value" data-lang="full-package-price">15 €</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name" data-lang="full-package-title">Baard.N</span>
+                    <div class="price-divider"></div>
+                    <span class="price-value" data-lang="full-package-price">10 €</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name" data-lang="full-package-title">Wassen</span>
+                    <div class="price-divider"></div>
+                    <span class="price-value" data-lang="full-package-price">5 €</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name" data-lang="full-package-title">Wax</span>
+                    <div class="price-divider"></div>
+                    <span class="price-value" data-lang="full-package-price">5 €</span>
+                </div>
+            </div>
+
+            <!-- زر الحجز -->
+            <div class="pricing-booking">
+                <a href="booking.html" class="btn" data-lang="book-now">Book Now</a>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <p id="footerText">© 2025 All Rights Reserved - Barbershop Azzimani</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const languageMenu = document.getElementById("language-menu");
+            const languageBtn = document.getElementById("language-btn");
+            const elementsToTranslate = document.querySelectorAll("[id]");
+
+            // اختيار عناصر القائمة
+            const menuIcon = document.getElementById("menu-icon");
+            const mobileNav = document.getElementById("mobile-nav");
+
+            const slides = document.querySelectorAll(".slide");
+            const dots = document.querySelectorAll(".dot");
+            const slider = document.querySelector(".slider");
+            const dotsContainer = slider.querySelector(".dots");
+            let currentIndex = 7;
+
+            // اختيار جميع أيقونات اللغة
+            const languageIcons = document.querySelectorAll(".language-icon");
+            // فتح وإغلاق القائمة عند النقر
+            menuIcon.addEventListener("click", () => {
+                if (mobileNav.classList.contains("open")) {
+                    mobileNav.classList.remove("open"); // إغلاق القائمة
+                    mobileNav.style.height = "0"; // إعادة تعيين الارتفاع
+                } else {
+                    mobileNav.classList.add("open"); // فتح القائمة
+                    mobileNav.style.height = mobileNav.scrollHeight + "px"; // ضبط الارتفاع
+                }
+            });
+
+            // إخفاء القائمة أثناء تحريك الصفحة
+            let lastScrollTop = 0;
+            window.addEventListener("scroll", () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    // المستخدم ينزل للأسفل
+                    mobileNav.classList.remove("open");
+                    mobileNav.style.height = "0";
+                }
+                lastScrollTop = scrollTop;
+            });
+
+
+            // النصوص لجميع اللغات
+            const translations = {
+                en: {
+                    // Header
+                    logo: "Barbershop Azzimani",
+                    navHome: "Home",
+                    navServices: "Services",
+                    navGallery: "Gallery",
+                    navShop: "Shop",
+                    navContact: "Contact",
+                    navHome1: "Home",
+                    navServices1: "Services",
+                    navGallery1: "Gallery",
+                    navShop1: "Shop",
+                    navContact1: "Contact",
+                    // Hero Section
+                    slide1Title: "A Cut Above the Rest",
+                    slide1Text: "Experience precision and style with every snip.",
+                    slide2Title: "Timeless Elegance",
+                    slide2Text: "Classic grooming for the modern gentleman.",
+                    slide3Title: "The Art of Grooming",
+                    slide3Text: "Redefining your style, one haircut at a time.",
+                    slide4Title: "Sharp Looks, Smooth Finish",
+                    slide4Text: "Tailored grooming to match your personality.",
+                    slide5Title: "Confidence Starts Here",
+                    slide5Text: "Feel your best with a perfect cut.",
+                    slide6Title: "Refined & Redefined",
+                    slide6Text: "Crafting your signature look with precision.",
+                    slide7Title: "Where Tradition Meets Trend",
+                    slide7Text: "Blending classic techniques with modern flair.",
+                    slide8Title: "Elevate Your Style",
+                    slide8Text: "Step into sophistication and leave with confidence.",
+                    slide9Title: "Mastering the Details",
+                    slide9Text: "Attention to detail in every cut and trim.",
+                    slide10Title: "Your Style, Our Expertise",
+                    slide10Text: "Delivering tailored grooming for every gentleman.",
+                    // Services Section
+                    servicesTitle: "Our Services",
+                    service1Title: "Haircut",
+                    service1Text: "Modern styles to match your taste.",
+                    service2Title: "Beard Grooming",
+                    service2Text: "Stay sharp and stylish.",
+                    service3Title: "Skin Care",
+                    service3Text: "Refresh and rejuvenate your skin.",
+                    service4Title: "Hair Treatment",
+                    service4Text: "Protect and nourish your hair.",
+                    service5Title: "Hair Coloring",
+                    service5Text: "Bold colors to express your style.",
+                    // contact - info
+                    openingHours: "Opening Hours",
+                    monday: "Monday",
+                    tuesday: "Tuesday",
+                    wednesday: "Wednesday",
+                    thursday: "Thursday",
+                    friday: "Friday",
+                    saturday: "Saturday",
+                    sunday: "Sunday",
+                    closed: "Closed",
+                    lunchBreak: "Closed between 12:00 and 13:00",
+                    aboutUsTitle: "About Us",
+                    aboutUsText: "At Barbershop Azzimani, we combine traditional barbering techniques with modern styles to create a personalized grooming experience. Our expert barbers take the time to understand your needs, ensuring you leave feeling refreshed and confident. We pride ourselves on using high-quality products and offering a welcoming atmosphere for all our clients. Whether you're after a classic look or a contemporary style, we are committed to providing exceptional service every time you visit. Join us and experience the perfect blend of luxury, tradition, and style at Barbershop Azzimani – where grooming meets excellence.",
+                    contactUsTitle: "Contact Us",
+                    phone: "Phone: +123 456 7890",
+                    bookNow: "Book Now",
+                    // Footer
+                    footerText: "© 2025 All Rights Reserved - Barbershop Azzimani",
+                },
+                ar: {
+                    // Header
+                    logo: "صالون أزيماني",
+                    navHome: "الرئيسية",
+                    navServices: "الخدمات",
+                    navGallery: "المعرض",
+                    navShop: "المتجر",
+                    navContact: "اتصل بنا",
+                    navHome1: "الرئيسية",
+                    navServices1: "الخدمات",
+                    navGallery1: "المعرض",
+                    navShop1: "المتجر",
+                    navContact1: "اتصل بنا",
+                    // Hero Section
+                    slide1Title: "قصة متميزة دائمًا",
+                    slide1Text: "جرب الدقة والأناقة مع كل قصّة.",
+                    slide2Title: "أناقة خالدة",
+                    slide2Text: "حلاقة كلاسيكية للرجل العصري.",
+                    slide3Title: "فن الحلاقة",
+                    slide3Text: "إعادة تعريف أسلوبك، قصة بعد أخرى.",
+                    slide4Title: "مظهر حاد ونهاية سلسة",
+                    slide4Text: "حلاقة مخصصة تناسب شخصيتك.",
+                    slide5Title: "الثقة تبدأ هنا",
+                    slide5Text: "شعر مثالي يمنحك الثقة.",
+                    slide6Title: "إتقان مُعاد تعريفه",
+                    slide6Text: "صناعة مظهرك المميز بدقة.",
+                    slide7Title: "حيث يلتقي التقليد بالحداثة",
+                    slide7Text: "مزج بين التقنيات الكلاسيكية والأناقة الحديثة.",
+                    slide8Title: "ارفع مستوى أناقتك",
+                    slide8Text: "ادخل بثقة واخرج بأناقة.",
+                    slide9Title: "إتقان التفاصيل",
+                    slide9Text: "الاهتمام بكل تفصيل في كل قصة وتشذيب.",
+                    slide10Title: "أسلوبك، خبرتنا",
+                    slide10Text: "تقديم خدمة حلاقة مخصصة لكل رجل.",
+                    // Services Section
+                    servicesTitle: "خدماتنا",
+                    service1Title: "قص الشعر",
+                    service1Text: "أنماط عصرية تناسب ذوقك.",
+                    service2Title: "تهذيب اللحية",
+                    service2Text: "ابقَ أنيقًا وجذابًا.",
+                    service3Title: "العناية بالبشرة",
+                    service3Text: "انتعش وجدد بشرتك.",
+                    service4Title: "علاج الشعر",
+                    service4Text: "حماية شعرك وتغذيته.",
+                    service5Title: "تلوين الشعر",
+                    service5Text: "ألوان جريئة للتعبير عن شخصيتك.",
+                    // contact - info
+                    openingHours: "مواعيد العمل",
+                    monday: "الاثنين",
+                    tuesday: "الثلاثاء",
+                    wednesday: "الأربعاء",
+                    thursday: "الخميس",
+                    friday: "الجمعة",
+                    saturday: "السبت",
+                    sunday: "الأحد",
+                    closed: "مغلق",
+                    lunchBreak: "مغلق بين الساعة 12:00 و 13:00",
+                    aboutUsTitle: "عنّا",
+                    aboutUsText: "في صالون أزيماني، ندمج تقنيات الحلاقة التقليدية مع الأساليب الحديثة لإنشاء تجربة حلاقة شخصية. يأخذ حلاقونا الخبراء الوقت لفهم احتياجاتك، مما يضمن لك الخروج وأنت تشعر بالانتعاش والثقة. نحن نفخر باستخدام منتجات عالية الجودة وتقديم بيئة ترحيبية لجميع عملائنا. سواء كنت تبحث عن مظهر كلاسيكي أو أسلوب عصري، نحن ملتزمون بتقديم خدمة استثنائية في كل مرة تزورنا فيها. انضم إلينا وتجربة المزيج المثالي من الفخامة والتقاليد والأناقة في صالون أزيماني – حيث تلتقي الحلاقة مع التميز.",
+                    contactUsTitle: "اتصل بنا",
+                    phone: "الهاتف: +123 456 7890",
+                    bookNow: "احجز الآن",
+                    // Footer
+                    footerText: "© 2025 جميع الحقوق محفوظة - صالون أزيماني",
+                },
+                nl: {
+                    // Header
+                    logo: "Kapper Azzimani",
+                    navHome: "Startpagina",
+                    navServices: "Diensten",
+                    navGallery: "Galerij",
+                    navShop: "Winkel",
+                    navContact: "Contact",
+                    navHome1: "Startpagina",
+                    navServices1: "Diensten",
+                    navGallery1: "Galerij",
+                    navShop1: "Winkel",
+                    navContact1: "Contact",
+                    // Hero Section
+                    slide1Title: "Een stap boven de rest",
+                    slide1Text: "Ervaar precisie en stijl bij elke knipbeurt.",
+                    slide2Title: "Tijdloze elegantie",
+                    slide2Text: "Klassieke verzorging voor de moderne man.",
+                    slide3Title: "De kunst van het verzorgen",
+                    slide3Text: "Uw stijl opnieuw definiëren, één knipbeurt tegelijk.",
+                    slide4Title: "Scherpe looks, gladde afwerking",
+                    slide4Text: "Op maat gemaakte verzorging die bij uw persoonlijkheid past.",
+                    slide5Title: "Zelfvertrouwen begint hier",
+                    slide5Text: "Voel je op je best met een perfecte knipbeurt.",
+                    slide6Title: "Verfijnd & Heruitgevonden",
+                    slide6Text: "Uw kenmerkende look met precisie creëren.",
+                    slide7Title: "Waar traditie trend ontmoet",
+                    slide7Text: "Klassieke technieken gecombineerd met moderne flair.",
+                    slide8Title: "Verhoog uw stijl",
+                    slide8Text: "Stap in elegantie en verlaat met zelfvertrouwen.",
+                    slide9Title: "Meesterschap in details",
+                    slide9Text: "Aandacht voor detail bij elke knip- en trimbeurt.",
+                    slide10Title: "Uw stijl, onze expertise",
+                    slide10Text: "Op maat gemaakte verzorging voor elke heer.",
+                    // Services Section
+                    servicesTitle: "Onze Diensten",
+                    service1Title: "Haarknippen",
+                    service1Text: "Moderne stijlen die bij uw smaak passen.",
+                    service2Title: "Baardverzorging",
+                    service2Text: "Blijf scherp en stijlvol.",
+                    service3Title: "Huidverzorging",
+                    service3Text: "Verfris en verjong uw huid.",
+                    service4Title: "Haarbehandeling",
+                    service4Text: "Bescherm en voed uw haar.",
+                    service5Title: "Haar Kleuren",
+                    service5Text: "Gedurfde kleuren om uw stijl uit te drukken.",
+                    // contact - info
+                    openingHours: "Openingstijden",
+                    monday: "Maandag",
+                    tuesday: "Dinsdag",
+                    wednesday: "Woensdag",
+                    thursday: "Donderdag",
+                    friday: "Vrijdag",
+                    saturday: "Zaterdag",
+                    sunday: "Zondag",
+                    closed: "Gesloten",
+                    lunchBreak: "Gesloten tussen 12:00 en 13:00",
+                    aboutUsTitle: "Over Ons",
+                    aboutUsText: "Bij Barbershop Azzimani combineren we traditionele barbiertechnieken met moderne stijlen om een gepersonaliseerde verzorgingservaring te creëren. Onze deskundige kappers nemen de tijd om uw behoeften te begrijpen, zodat u zich verfrist en zelfverzekerd voelt bij vertrek. We zijn er trots op dat we hoogwaardige producten gebruiken en een gastvrije sfeer bieden voor al onze klanten. Of u nu op zoek bent naar een klassieke look of een eigentijdse stijl, we zijn toegewijd om elke keer uitzonderlijke service te bieden. Kom bij ons langs en ervaar de perfecte combinatie van luxe, traditie en stijl bij Barbershop Azzimani – waar verzorging uitmuntendheid ontmoet.",
+                    contactUsTitle: "Neem contact met ons op",
+                    phone: "Telefoon: +123 456 7890",
+                    bookNow: "Boek Nu",
+                    // Footer
+                    footerText: "© 2025 Alle rechten voorbehouden - Kapper Azzimani",
+                },
+            };
+
+            // دالة لتحديث النصوص
+            function updateLanguage(lang) {
+                for (const id in translations[lang]) {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = translations[lang][id];
+                    }
+                }
+                // تطبيق تغييرات على النصوص واتجاه الصفحة
+                if (lang === 'ar') {
+                    document.body.classList.add('arabic');
+                    document.body.classList.remove('english', 'dutch');
+                } else if (lang === 'en') {
+                    document.body.classList.add('english');
+                    document.body.classList.remove('arabic', 'dutch');
+                } else if (lang === 'nl') {
+                    document.body.classList.add('dutch');
+                    document.body.classList.remove('arabic', 'english');
+                }
+
+                localStorage.setItem("selectedLang", lang);
+
+            }
+
+            // إضافة حدث النقر لكل أيقونة
+            languageIcons.forEach(icon => {
+                icon.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const selectedLang = icon.getAttribute("id");
+                    updateLanguage(selectedLang);
+
+                    // حفظ اللغة في التخزين المحلي
+                    localStorage.setItem("selectedLang", selectedLang);
+                });
+            });
+
+            // استعادة اللغة من التخزين المحلي عند تحميل الصفحة
+            const savedLang = localStorage.getItem("selectedLang") || "en";
+            updateLanguage(savedLang);
+
+            window.addEventListener("load", () => {
+                document.body.classList.add("loaded");
+            });
+
+            // إنشاء النقاط ديناميكيًا
+            function createDots() {
+                dotsContainer.innerHTML = ""; // مسح النقاط القديمة
+                slides.forEach((_, index) => {
+                    const dot = document.createElement("span");
+                    dot.classList.add("dot");
+                    dot.dataset.index = index;
+                    if (index === currentIndex) {
+                        dot.classList.add("active");
+                    }
+                    dot.addEventListener("click", () => {
+                        currentIndex = index;
+                        updateSlides();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            // تحديث الشرائح والنقاط
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove("active");
+                    if (index === currentIndex) {
+                        slide.classList.add("active");
+                    }
+                });
+
+                const dots = dotsContainer.querySelectorAll(".dot");
+                dots.forEach((dot, index) => {
+                    dot.classList.remove("active");
+                    if (index === currentIndex) {
+                        dot.classList.add("active");
+                    }
+                });
+            }
+            // التبديل التلقائي بين الشرائح
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlides();
+            }
+
+            // إنشاء النقاط وعرض أول شريحة
+            createDots();
+            updateSlides();
+
+            // بدء التبديل التلقائي
+            setInterval(nextSlide, 5000);
+
+        });
+    </script>
+</body>
+
+</html>
