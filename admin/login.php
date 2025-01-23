@@ -1,34 +1,31 @@
 <?php
 session_start();
-require_once 'includes/db.php';
+require_once 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    $stmt = $conn->prepare("SELECT id, username, password_hash FROM admin_users WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    $stmt = $conn->prepare("SELECT id, password FROM admins WHERE username = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $username, $password_hash);
+        $stmt->bind_result($id, $hashed_password);
         $stmt->fetch();
-
-        if (password_verify($password, $password_hash)) {
-            $_SESSION['user_id'] = $id;
-            $_SESSION['username'] = $username;
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['admin_id'] = $id;
             header("Location: dashboard.php");
             exit;
         } else {
-            $error = "Invalid credentials.";
+            $error = "Invalid password.";
         }
     } else {
         $error = "User not found.";
     }
     $stmt->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -37,19 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login to Dashboard</h2>
-        <form action="" method="POST">
-            <label>Email:</label>
-            <input type="email" name="email" required>
-            <label>Password:</label>
-            <input type="password" name="password" required>
-            <button type="submit">Login</button>
-            <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
-        </form>
-    </div>
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <?php if (isset($error)) echo "<p>$error</p>"; ?>
 </body>
 </html>
